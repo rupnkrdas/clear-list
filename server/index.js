@@ -1,6 +1,6 @@
 const express = require("express");
 const connectToDatabase = require("./config/db");
-const { MONGODB_URL } = require("./secrets");
+require("dotenv").config();
 const userRouter = require("./routes/user");
 const cors = require("cors");
 
@@ -8,7 +8,7 @@ const app = express();
 const PORT = 3000;
 
 // connect to database
-connectToDatabase(MONGODB_URL)
+connectToDatabase(process.env.MONGO_URI)
 	.then(() => {
 		console.log(`Connected to database successfully`);
 	})

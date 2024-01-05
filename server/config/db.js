@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-async function connectToDatabase(url) {
-	await mongoose.connect(url);
+async function connectToDatabase(uri) {
+	await mongoose.connect(uri);
 }
 
 module.exports = connectToDatabase;
