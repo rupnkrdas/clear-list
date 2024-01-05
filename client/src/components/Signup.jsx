@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signupFields } from "../constants/formFields";
+import { BACKEND_URL } from "../constants/urls";
 import FormAction from "./FormAction";
 import Input from "./Input";
 
@@ -22,7 +23,7 @@ export default function Signup() {
 
 	//handle Signup API Integration here
 	const createAccount = async () => {
-		fetch("http://localhost:3000/user/signup", {
+		fetch(`${BACKEND_URL}/user/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

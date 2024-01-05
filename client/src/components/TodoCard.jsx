@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BACKEND_URL } from "../constants/urls";
 
 export default function TodoCard(props) {
 	const { _id, title, description, isCompleted } = props;
@@ -6,7 +7,7 @@ export default function TodoCard(props) {
 
 	const changeStatus = async () => {
 		//TODO: update todo and mark it as completed
-		fetch(`http://localhost:3000/user/todos/${_id}`, {
+		fetch(`${BACKEND_URL}/user/todos/${_id}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",

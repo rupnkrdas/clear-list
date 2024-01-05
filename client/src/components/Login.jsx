@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { loginFields } from "../constants/formFields";
+import { BACKEND_URL } from "../constants/urls";
 import FormAction from "./FormAction";
 import Input from "./Input";
 
@@ -22,7 +23,7 @@ export default function Login() {
 	const authenticateUser = () => {
 		console.log(loginState);
 
-		fetch("http://localhost:3000/user/login", {
+		fetch(`${BACKEND_URL}/user/login`, {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
@@ -37,9 +38,7 @@ export default function Login() {
 				console.log(json);
 
 				if (res.status === 400) {
-					alert(
-						`${json.message}`
-					);
+					alert(`${json.message}`);
 				} else {
 					localStorage.setItem("token", json.token);
 					window.location.href = "/todos";
