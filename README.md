@@ -2,6 +2,9 @@
 
 Clear-List is a simple and efficient todo application built using the MERN stack (MongoDB, Express.js, React, Node.js). This project incorporates MongoDB for the database, React for the frontend, and Tailwind CSS for a clean and responsive user interface. Additionally, it includes user authentication implemented through JSON Web Tokens (JWT).
 
+## Demo
+https://github.com/rupnkrdas/clear-list/assets/88283289/14207af7-2ec8-4acc-b7b3-5922c504ee23
+
 ## Features
 
 -   **User Accounts**: Register and create your personalized todo list.
