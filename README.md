@@ -76,9 +76,7 @@ https://github.com/rupnkrdas/clear-list/assets/88283289/14207af7-2ec8-4acc-b7b3-
         // Your application logic here, using JWT_SECRET and MONGODB_URL as needed
         ```
 
-This revised section explicitly focuses on the use of environment variables without mentioning a separate `secrets.js` file.
-
-5. **Run the Application:**
+6. **Run the Application:**
 
     ```bash
     # Start the server (from the server directory)
@@ -88,7 +86,7 @@ This revised section explicitly focuses on the use of environment variables with
     npm run dev
     ```
 
-6. **Open in Browser:**
+7. **Open in Browser:**
    Once the application is running, open your browser and go to the provided client URL, e.g., [http://localhost:5173/](http://localhost:5173/), to view and interact with the Clear-List Todo Application.
 
 ## Contributing
