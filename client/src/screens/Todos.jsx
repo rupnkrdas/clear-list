@@ -4,6 +4,7 @@ import signoutImage from "../assets/signout.png";
 import { Tooltip } from "react-tooltip";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ConfirmationDialog from "../components/ConfirmationDialogue";
+import { BACKEND_URL } from "../constants/urls";
 
 export default function TodosPage() {
 	const [todos, setTodos] = useState([]);
@@ -24,7 +25,7 @@ export default function TodosPage() {
 
 	// Fetch todos
 	async function fetchData() {
-		fetch("http://localhost:3000/user/todos", {
+		fetch(`${BACKEND_URL}/user/todos`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -34,7 +35,12 @@ export default function TodosPage() {
 			.then(async (res) => {
 				const body = await res.json();
 				// console.log(body);
-				setTodos(body["todos"]);
+				if (res.status === 401) {
+					window.location.href = "/";
+					localStorage.removeItem("token");
+				} else {
+					setTodos(body["todos"]);
+				}
 			})
 			.catch((err) => console.log(`Error : ${err}`));
 	}
@@ -49,7 +55,7 @@ export default function TodosPage() {
 	};
 
 	async function createNewTodo() {
-		fetch("http://localhost:3000/user/todos", {
+		fetch(`${BACKEND_URL}/user/todos`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -77,8 +83,8 @@ export default function TodosPage() {
 	}
 
 	useEffect(() => {
+		fetchData();
 		setTimeout(() => {
-			fetchData();
 			setLoading(false);
 		}, 2000);
 	}, []);
