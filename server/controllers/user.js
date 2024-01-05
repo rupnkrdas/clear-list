@@ -9,18 +9,18 @@ const handleUserSignup = async (req, res) => {
 	if (!username || !password) {
 		return res
 			.status(400)
-			.json({ message: "Username and password are required" });
+			.json({ message: "Username and password are required!" });
 	}
 
 	const userExists = await User.findOne({ username });
 	if (userExists) {
 		return res
 			.status(400)
-			.json({ message: "User already exists, login instead" });
+			.json({ message: "User already exists, login instead!" });
 	}
 
 	await User.create({ username, password });
-	return res.status(201).json({ message: "User created" });
+	return res.status(201).json({ message: "User created, please login!" });
 };
 
 const handleUserSignin = async (req, res) => {
@@ -29,20 +29,20 @@ const handleUserSignin = async (req, res) => {
 		if (!username || !password) {
 			return res
 				.status(400)
-				.json({ message: "Username and password are required" });
+				.json({ message: "Username and password are required!" });
 		}
 
 		const user = await User.findOne({ username });
 		if (!user) {
 			return res
 				.status(400)
-				.json({ message: "User not found. Please sign up." });
+				.json({ message: "User not found. Please sign up!" });
 		}
 		if (user) {
 			if (user.password !== password) {
 				return res
 					.status(400)
-					.json({ message: "Incorrect password. Please try again." });
+					.json({ message: "Incorrect password. Please try again!" });
 			}
 		}
 
@@ -74,7 +74,7 @@ const handleCreateNewTodo = async (req, res) => {
 	if (!title || !description) {
 		return res
 			.status(400)
-			.json({ message: "Title and description are required" });
+			.json({ message: "Title and description are required!" });
 	}
 	const username = req.user.username;
 	const newTodo = await Todo.create({ title, description, isCompleted });
@@ -84,7 +84,7 @@ const handleCreateNewTodo = async (req, res) => {
 		{ $push: { todos: newTodo._id } }
 	);
 
-	return res.status(201).json({ message: "Todo created", todo: newTodo });
+	return res.status(201).json({ message: "Todo created!", todo: newTodo });
 };
 
 const handleUpdateTodo = async (req, res) => {
@@ -97,7 +97,9 @@ const handleUpdateTodo = async (req, res) => {
 		{ new: true }
 	);
 
-	return res.status(200).json({ message: "Todo updated", todo: updatedTodo });
+	return res
+		.status(200)
+		.json({ message: "Todo updated!", todo: updatedTodo });
 };
 
 module.exports = {
