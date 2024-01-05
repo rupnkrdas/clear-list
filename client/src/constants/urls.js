@@ -1,3 +1,3 @@
-const BACKEND_URL = "https://clear-list-backend.vercel.app";
+const BACKEND_URL = "http://localhost:3000";
 
 export { BACKEND_URL };
