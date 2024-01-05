@@ -12,7 +12,7 @@ const handleUserSignup = async (req, res) => {
 			.json({ message: "Username and password are required" });
 	}
 
-	const userExists = await User.findOne({ username, password });
+	const userExists = await User.findOne({ username });
 	if (userExists) {
 		return res
 			.status(400)
