@@ -16,7 +16,20 @@ connectToDatabase(process.env.MONGO_URI)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+
+// Allow requests only from your client-side application
+const allowedOrigins = ["https://clear-list.vercel.app"];
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			if (!origin || allowedOrigins.includes(origin)) {
+				callback(null, true);
+			} else {
+				callback(new Error("Not allowed by CORS"));
+			}
+		},
+	})
+);
 
 app.use("/user", userRouter);
 
