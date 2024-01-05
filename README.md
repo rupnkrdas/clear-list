@@ -3,6 +3,7 @@
 Clear-List is a simple and efficient todo application built using the MERN stack (MongoDB, Express.js, React, Node.js). This project incorporates MongoDB for the database, React for the frontend, and Tailwind CSS for a clean and responsive user interface. Additionally, it includes user authentication implemented through JSON Web Tokens (JWT).
 
 ## Demo
+
 https://github.com/rupnkrdas/clear-list/assets/88283289/14207af7-2ec8-4acc-b7b3-5922c504ee23
 
 ## Features
@@ -46,19 +47,36 @@ https://github.com/rupnkrdas/clear-list/assets/88283289/14207af7-2ec8-4acc-b7b3-
 
     - Create a MongoDB database instance and obtain the connection URI.
 
-4. **Create Secrets File:**
+4. **Set Environment Variables:**
 
-    - Create a file named `secrets.js` inside the `server` directory.
-    - Add the following code to `secrets.js`:
+    - Set up environment variables for your project. Create a `.env` file in the root directory of your project.
+    - Add the following lines to your `.env` file:
+
+        ```dotenv
+        # .env
+
+        # Replace 'your-mongo-database-url' with your actual MongoDB connection URL
+        MONGODB_URL=your-mongo-database-url
+        # Replace 'your-jwt-secret' with your actual JWT secret
+        JWT_SECRET=your-jwt-secret
+        ```
+
+5. **Access Environment Variables in Your Code:**
+
+    - Update the code to access the environment variables directly.
 
         ```javascript
-        // server/secrets.js
+        // server/index.js or server/app.js
 
-        const JWT_SECRET = "<your-jwt-secret>";
-        const MONGODB_URL = "<your-mongo-database-url>";
+        require("dotenv").config();
 
-        module.exports = { JWT_SECRET, MONGODB_URL };
+        const JWT_SECRET = process.env.JWT_SECRET;
+        const MONGODB_URL = process.env.MONGODB_URL;
+
+        // Your application logic here, using JWT_SECRET and MONGODB_URL as needed
         ```
+
+This revised section explicitly focuses on the use of environment variables without mentioning a separate `secrets.js` file.
 
 5. **Run the Application:**
 
